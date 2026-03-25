@@ -1,73 +1,68 @@
-# React + TypeScript + Vite
+# HealthSaaS - B2B Healthcare Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive, production-ready B2B Healthcare SaaS application built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
+**[https://cheerful-melba-0ef507.netlify.app](https://cheerful-melba-0ef507.netlify.app)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
+- **Secure Authentication**: Production-grade Firebase auth with session persistence.
+- **Patient Management**: Grid/List views, dynamic routing, simulated real-time search.
+- **Analytics Visualization**: CSS-driven metric charts for key performance indicators.
+- **Push Notifications**: Integrated Service Worker for native browser push notifications on login.
+- **Fully Responsive**: Mobile-first design with a collapsible hamburger sidebar and optimized dashboard grids.
+- **Micro-Frontend Ready**: Architected using Vite Module Federation for scalable enterprise development.
 
-## React Compiler
+## 🛠️ Tech Stack
+- **Frontend**: React 18, TypeScript, Vite
+- **State Management**: Zustand
+- **Routing**: React Router DOM v6
+- **Styling**: Vanilla CSS Modules (Glassmorphism design system)
+- **Backend/Auth**: Firebase Integration
+- **Icons**: Lucide React
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📦 Local Development
 
-## Expanding the ESLint configuration
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/aditya6386/B2B-Healthcare-SaaS.git
+   cd b2b-healthcare-saas
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+3. **Set up Environment Variables**
+   Create a `.env` file in the root directory and add your Firebase credentials:
+   ```env
+   VITE_FIREBASE_API_KEY="your-api-key"
+   VITE_FIREBASE_AUTH_DOMAIN="your-auth-domain"
+   VITE_FIREBASE_PROJECT_ID="your-project-id"
+   VITE_FIREBASE_STORAGE_BUCKET="your-storage-bucket"
+   VITE_FIREBASE_MESSAGING_SENDER_ID="your-sender-id"
+   VITE_FIREBASE_APP_ID="your-app-id"
+   VITE_FIREBASE_MEASUREMENT_ID="your-measurement-id"
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+5. **Build for production**
+   ```bash
+   npm run build
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🏗️ Architecture
+The codebase follows a strict feature-based architecture for maintainability:
+```text
+src/
+├── features/      # Independent feature modules (auth, patients, analytics)
+├── layouts/       # Global persistent layouts (MainLayout, Sidebar)
+├── lib/           # Third-party integrations (Firebase)
+├── store/         # Global Zustand state stores
+└── components/    # Shared atomic UI elements (Buttons, Inputs, Cards)
 ```
