@@ -7,11 +7,11 @@ import { Search, LayoutGrid, List as ListIcon, ChevronRight } from 'lucide-react
 import styles from './DashboardPage.module.css';
 
 const mockPatients: Patient[] = [
-  { id: '1', name: 'John Doe', age: 45, gender: 'Male', condition: 'Hypertension', status: 'stable', lastVisit: '2023-10-15' },
-  { id: '2', name: 'Jane Smith', age: 32, gender: 'Female', condition: 'Type 2 Diabetes', status: 'recovering', lastVisit: '2023-10-10' },
-  { id: '3', name: 'Robert Johnson', age: 78, gender: 'Male', condition: 'Heart Failure', status: 'critical', lastVisit: '2023-10-18' },
-  { id: '4', name: 'Emily Davis', age: 28, gender: 'Female', condition: 'Asthma', status: 'stable', lastVisit: '2023-09-22' },
-  { id: '5', name: 'Michael Brown', age: 55, gender: 'Male', condition: 'COPD', status: 'recovering', lastVisit: '2023-10-05' },
+  { id: '1', name: 'Aditya Patel', age: 45, gender: 'Male', condition: 'Hypertension', status: 'stable', lastVisit: '2026-03-15' },
+  { id: '2', name: 'Aradhya singh', age: 32, gender: 'Female', condition: 'Type 2 Diabetes', status: 'recovering', lastVisit: '2026-02-10' },
+  { id: '3', name: 'Arnav Verma', age: 78, gender: 'Male', condition: 'Heart Failure', status: 'critical', lastVisit: '2026-01-18' },
+  { id: '4', name: 'Sunakshi Sinha', age: 28, gender: 'Female', condition: 'Asthma', status: 'stable', lastVisit: '2025-12-22' },
+  { id: '5', name: 'Honey Singh', age: 55, gender: 'Male', condition: 'COPD', status: 'recovering', lastVisit: '2025-11-05' },
 ];
 
 export default function DashboardPage() {

@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import { useAuthStore } from '../store/useAuthStore';
-import { BarChart3, LogOut, Bell, Activity, LayoutDashboard } from 'lucide-react';
+import { BarChart3, LogOut, Bell, Activity, LayoutDashboard, Menu, X } from 'lucide-react';
 import styles from './MainLayout.module.css';
 
 export default function MainLayout() {
   const { user, logout } = useAuthStore();
+  // track if mobile sidebar is open
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const requestNotificationPermission = async () => {
     if ('Notification' in window && 'serviceWorker' in navigator) {
@@ -20,10 +23,19 @@ export default function MainLayout() {
     }
   };
 
+  const closeSidebar = () => setSidebarOpen(false);
+
   return (
     <div className={`app-container ${styles.layout}`}>
+
+      {/* dark overlay behind sidebar on mobile */}
+      <div
+        className={`${styles.overlay} ${sidebarOpen ? styles.open : ''}`}
+        onClick={closeSidebar}
+      />
+
       {/* sidebar menu */}
-      <aside className={styles.sidebar}>
+      <aside className={`${styles.sidebar} ${sidebarOpen ? styles.open : ''}`}>
         <div className={styles.logo}>
           <Activity className={styles.logoIcon} />
           <h2>HealthSaaS</h2>
@@ -33,12 +45,14 @@ export default function MainLayout() {
           <NavLink 
             to="/dashboard" 
             className={({isActive}: {isActive: boolean}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
+            onClick={closeSidebar}
           >
             <LayoutDashboard size={20} /> Dashboard
           </NavLink>
           <NavLink 
             to="/analytics" 
             className={({isActive}: {isActive: boolean}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
+            onClick={closeSidebar}
           >
             <BarChart3 size={20} /> Analytics
           </NavLink>
@@ -55,9 +69,17 @@ export default function MainLayout() {
       <div className="main-content">
         {/* top navbar */}
         <header className={styles.header}>
-          <div className={styles.searchBar}>
-            {/* search bar later */}
-          </div>
+          {/* hamburger only shows on mobile */}
+          <button
+            className={styles.menuBtn}
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            aria-label="Toggle menu"
+          >
+            {sidebarOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+
+          <div style={{ flex: 1 }} />
+
           <div className={styles.headerActions}>
             <button className={styles.iconBtn} onClick={requestNotificationPermission} title="Enable Notifications">
               <Bell size={20} />
