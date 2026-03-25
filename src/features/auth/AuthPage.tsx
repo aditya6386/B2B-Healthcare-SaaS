@@ -28,6 +28,21 @@ export default function AuthPage() {
       } else {
         await createUserWithEmailAndPassword(auth, email, password);
       }
+
+      // ask for notification permission right after login
+      if ('Notification' in window && 'serviceWorker' in navigator) {
+        const permission = await Notification.requestPermission();
+        if (permission === 'granted') {
+          // send welcome notification via service worker
+          navigator.serviceWorker.ready.then((registration) => {
+            registration.showNotification('Welcome to HealthSaaS! 👋', {
+              body: 'You are now logged in. Patient alerts will appear here.',
+              icon: '/vite.svg',
+            });
+          });
+        }
+      }
+
       navigate('/dashboard');
     } catch (err) {
       if (err instanceof FirebaseError) {
